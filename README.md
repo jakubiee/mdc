@@ -1,5 +1,5 @@
-### MDC
-# Input
+# MDC
+### Input
 ![](fish.jpg)
-# Output
-![](palette)
+### Output
+![](palette.png)
