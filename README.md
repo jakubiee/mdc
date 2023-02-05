@@ -2,4 +2,4 @@
 # Input
 ![](fish.jpg)
 # Output
-![](pallete)
+![](palette)
