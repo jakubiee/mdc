@@ -25,8 +25,3 @@ img = img.reshape((img.shape[0] *img.shape[1],3))
 kmeans = Kmeans()
 centroids,clusters = kmeans.kmeans(img, k=5)
 plot_palette(centroids)
-
-
-
-
-plot_palette(centroids)
