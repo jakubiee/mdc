@@ -92,6 +92,16 @@ commands = [
                     "default": None,
                 },
             ),
+            (
+                ["-hex"],
+                {
+                    "help": "Hmm",
+                    "type": bool,
+                    "nargs": "?",
+                    "const": True,
+                    "default": False,
+                },
+            ),
         ],
     ),
 ]
