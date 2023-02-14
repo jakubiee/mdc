@@ -114,10 +114,8 @@ def main():
     args = parser.parse_args()
     if "func" not in args:
         parser.print_help()
-    try:
-        args.func(args)
-    except:
-        sys.exit()
+
+    args.func(args)
 
 
 main()

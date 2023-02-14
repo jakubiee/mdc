@@ -11,18 +11,21 @@ def video(args):
 
 def _get_centroids(args):
     kmeans = Kmeans()
-    video = args.video_name[0]
+    video_path = args.video_name[0]
+
+    if not os.path.isfile(video_path):
+        raise Exception("Incorrect file path")
 
     if args.t:
         video_title = args.t
     else:
-        video_basename = os.path.basename(video)
+        video_basename = os.path.basename(video_path)
         parts = []
         for p in video_basename.split("."):
             parts.append(p)
         video_title = parts[0]
 
-    video = cv2.VideoCapture(video)
+    video = cv2.VideoCapture(video_path)
     fps = video.get(cv2.CAP_PROP_FPS)
     start_frame, end_frame = 0, video.get(cv2.CAP_PROP_FRAME_COUNT)
     if args.s or args.e:
@@ -30,6 +33,8 @@ def _get_centroids(args):
             start_frame = int(fps * args.s)
         if args.e:
             end_frame = int(fps * args.e)
+    if end_frame <= start_frame:
+        raise Exception("The end time must be greater than the start time.")
 
     counter, frames, status, centroids = 0, 0, True, []
     while status:
@@ -48,7 +53,6 @@ def _get_centroids(args):
             break
         frames += 1
     centroids = np.array(centroids)
-    print(centroids)
     _get_palette(centroids, video_title)
 
 
