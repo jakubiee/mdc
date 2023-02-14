@@ -18,7 +18,7 @@ class Kmeans:
                 break
             centroids = new_centroids
 
-        return centroids[0], clusters
+        return centroids, clusters
 
     def _distance(self, X, centroid):
         return np.linalg.norm(X - centroid, axis=1)

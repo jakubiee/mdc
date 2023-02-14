@@ -81,6 +81,14 @@ commands = [
                 {
                     "help": "Number of colors in the palette.",
                     "type": int,
+                    "default": 5,
+                },
+            ),
+            (
+                ["-t"],
+                {
+                    "help": "Set a chart title.",
+                    "type": str,
                     "default": None,
                 },
             ),

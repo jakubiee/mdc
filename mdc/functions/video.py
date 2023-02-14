@@ -21,7 +21,7 @@ def _get_centroids(args):
         for p in video_basename.split("."):
             parts.append(p)
         video_title = parts[0]
-        
+
     video = cv2.VideoCapture(video)
     fps = video.get(cv2.CAP_PROP_FPS)
     start_frame, end_frame = 0, video.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -30,6 +30,7 @@ def _get_centroids(args):
             start_frame = int(fps * args.s)
         if args.e:
             end_frame = int(fps * args.e)
+
     counter, frames, status, centroids = 0, 0, True, []
     while status:
         status, img = video.read()
@@ -47,6 +48,7 @@ def _get_centroids(args):
             break
         frames += 1
     centroids = np.array(centroids)
+    print(centroids)
     _get_palette(centroids, video_title)
 
 
@@ -57,7 +59,7 @@ def _get_palette(centroids, video_title):
     pallete = np.zeros((height, width, 3), np.uint8)
     for centroid in centroids:
         end = start + 50
-        r, g, b = int(centroid[0]), int(centroid[1]), int(centroid[2])
+        r, g, b = int(centroid[0][0]), int(centroid[0][1]), int(centroid[0][2])
         cv2.rectangle(pallete, (start, 0), (int(end), height), (r, g, b), -1)
         start = end
     plt.figure()
