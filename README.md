@@ -1,11 +1,11 @@
-# MDC
+# MDC - Most dominant colors
 ## Image
 ### Input
 ![](fish.jpg)
 ### Output
-![](palette.png)
+![](fish.png)
 ## Video 
 ### Input
 [Input Video](https://www.youtube.com/watch?v=b005iHf8Z3g)
 ### Output
-![](video.png)
+![](MandelbrotSet.png)
