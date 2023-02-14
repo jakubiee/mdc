@@ -1,4 +1,4 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentTypeError
 import sys
 from typing import NamedTuple, List, Tuple, Dict, Any
 import functions
@@ -11,6 +11,18 @@ class Command(NamedTuple):
     description: str
     arguments: List[Argument]
 
+
+def time(time: str):
+    parts = []
+    for p in time.split(":"):
+        parts.append(int(p))
+    hours, minutes = parts[0], parts[1]
+    seconds = parts[2] if len(parts) > 2 else 0
+
+    if hours < 0 or not (0 <= minutes <= 59) or not (0 <= seconds <= 59):
+        raise ArgumentTypeError
+
+    return hours * 3600 + minutes * 60 + seconds
 
 commands = [
     Command(
@@ -30,7 +42,7 @@ commands = [
                 ["-s"],
                 {
                     "help": "Convert video from this time.",
-                    "type": int,
+                    "type": time,
                     "default": None,
                 },
             ),
@@ -38,7 +50,7 @@ commands = [
                 ["-e"],
                 {
                     "help": "Convert video up to this time.",
-                    "type": int,
+                    "type": time,
                     "default": None,
                 }
             ),
@@ -53,6 +65,7 @@ commands = [
                 {
                     "help": "The path of the image you want to convert.",
                     "type": str,
+                    "nargs": "+"
                 }
             ),
             (
