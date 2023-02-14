@@ -24,6 +24,7 @@ def time(time: str):
 
     return hours * 3600 + minutes * 60 + seconds
 
+
 commands = [
     Command(
         name="video",
@@ -35,7 +36,6 @@ commands = [
                     "help": "The path of the video you want to convert.",
                     "type": str,
                     "nargs": "+",
-                    
                 },
             ),
             (
@@ -52,12 +52,20 @@ commands = [
                     "help": "Convert video up to this time.",
                     "type": time,
                     "default": None,
-                }
+                },
+            ),
+            (
+                ["-t"],
+                {
+                    "help": "Set a chart title.",
+                    "type": str,
+                    "default": None,
+                },
             ),
         ],
     ),
     Command(
-        name = "image",
+        name="image",
         description="Convert image to a palette of colors",
         arguments=[
             (
@@ -65,8 +73,8 @@ commands = [
                 {
                     "help": "The path of the image you want to convert.",
                     "type": str,
-                    "nargs": "+"
-                }
+                    "nargs": "+",
+                },
             ),
             (
                 ["-c"],
@@ -74,12 +82,12 @@ commands = [
                     "help": "Number of colors in the palette.",
                     "type": int,
                     "default": None,
-                }
-            )
+                },
+            ),
         ],
     ),
-
 ]
+
 
 def get_parser():
     parser = ArgumentParser(prog="mdc")
@@ -92,6 +100,7 @@ def get_parser():
             sub.add_argument(*args, **kwargs)
     return parser
 
+
 def main():
     parser = get_parser()
     args = parser.parse_args()
@@ -102,5 +111,5 @@ def main():
     except:
         sys.exit()
 
-        
+
 main()

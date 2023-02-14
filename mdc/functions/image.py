@@ -8,13 +8,14 @@ def image(*args):
     print("image")
     return
 
+
 def plot_palette(centroids):
     start = 0
-    pallete = np.zeros((50,250,3), np.uint8)
+    pallete = np.zeros((50, 250, 3), np.uint8)
     for centroid in centroids:
-        end = start + 50 
-        r,g,b = int(centroid[0]), int(centroid[1]),int(centroid[2])
-        cv2.rectangle(pallete, (start, 0), (int(end), 50), (r,g,b), -1)
+        end = start + 50
+        r, g, b = int(centroid[0]), int(centroid[1]), int(centroid[2])
+        cv2.rectangle(pallete, (start, 0), (int(end), 50), (r, g, b), -1)
         start = end
     plt.figure()
     plt.axis("off")
