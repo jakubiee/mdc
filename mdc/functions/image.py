@@ -3,7 +3,7 @@ from utilities.kmeans import Kmeans
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-
+import colorsys
 
 def image(args):
     _get_centroids(args)
@@ -32,16 +32,25 @@ def _get_centroids(args):
     centroids, clusters = kmeans.kmeans(img, k=args.c)
     _get_palette(centroids, img_title, args)
 
-
 def _get_palette(centroids, img_title, args):
     start = 0
     width = int(args.c * 50)
     height = int(width / args.c)
     pallete = np.zeros((height, width, 3), np.uint8)
+    font = cv2.FONT_HERSHEY_PLAIN
+    font_scale = 0.5
     for centroid in centroids:
-        end = start + height
         r, g, b = int(centroid[0]), int(centroid[1]), int(centroid[2])
+        h, s, v = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+        rgb_color = colorsys.hsv_to_rgb(h, s, v)
+        hex_color = "#{:02x}{:02x}{:02x}".format(int(rgb_color[0] * 255), int(rgb_color[1] * 255), int(rgb_color[2] * 255))
+        end = start + height
         cv2.rectangle(pallete, (start, 0), (int(end), height), (r, g, b), -1)
+        text = hex_color.upper()
+        text_size = cv2.getTextSize(text, font, font_scale, 1)[0]
+        text_x = start + int((height - text_size[0]) / 2)
+        text_y = int(height * 0.9)
+        cv2.putText(pallete, text, (text_x, text_y), font, font_scale, (255, 255, 255), 1)
         start = end
     plt.figure()
     plt.axis("off")
