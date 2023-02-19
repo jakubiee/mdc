@@ -41,7 +41,7 @@ commands = [
             (
                 ["-s"],
                 {
-                    "help": "Convert video from this time.",
+                    "help": "Convert video from this time. (hh:mm:ss)",
                     "type": time,
                     "default": None,
                 },
@@ -49,7 +49,7 @@ commands = [
             (
                 ["-e"],
                 {
-                    "help": "Convert video up to this time.",
+                    "help": "Convert video up to this time. (hh:mm:ss)",
                     "type": time,
                     "default": None,
                 },
@@ -57,7 +57,7 @@ commands = [
             (
                 ["-t"],
                 {
-                    "help": "Set a chart title.",
+                    "help": "Set a palette title.",
                     "type": str,
                     "default": None,
                 },
@@ -95,7 +95,7 @@ commands = [
             (
                 ["-hex"],
                 {
-                    "help": "Hmm",
+                    "help": "Shows the hex color code of each color on the palette.",
                     "type": bool,
                     "nargs": "?",
                     "const": True,
