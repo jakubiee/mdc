@@ -1,16 +1,14 @@
 # MDC - Most Dominant Colors 🎨
 MDC allows you to create a palette of the most dominant colors in an image or video using the kmeans clustering.
 ## Installation
-1. Clone this repository
-2. Install required libraries
 ```
-$ pip install -r requirements.txt
+$ pip install mdcolors
 ```
 ## Usage
 ### Image
 ![](fish.png)
 ```
-$ python mdc/main.py image <image> [OPTIONS]
+$ mdc image <image> [OPTIONS]
 ```
 -	Arguments 
 	-	`<image>` - The path of the image you want to convert.
@@ -23,7 +21,7 @@ $ python mdc/main.py image <image> [OPTIONS]
 ### Video
 ![](MandelbrotSet.png)
 ```
-$ python mdc/main.py video <video> [OPTIONS]
+$ mdc video <video> [OPTIONS]
 ```
 -	Arguments 
 	-	`<video>` - The path of the video you want to convert.
