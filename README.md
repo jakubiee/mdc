@@ -10,7 +10,7 @@ $ pip install -r requirements.txt
 ### Image
 ![](fish.png)
 ```
-$ py mdc/main.py image <image> [OPTIONS]
+$ python mdc/main.py image <image> [OPTIONS]
 ```
 -	Arguments 
 	-	`<image>` - The path of the image you want to convert.
@@ -23,7 +23,7 @@ $ py mdc/main.py image <image> [OPTIONS]
 ### Video
 ![](MandelbrotSet.png)
 ```
-$ py mdc/main.py video <video> [OPTIONS]
+$ python mdc/main.py video <video> [OPTIONS]
 ```
 -	Arguments 
 	-	`<video>` - The path of the video you want to convert.

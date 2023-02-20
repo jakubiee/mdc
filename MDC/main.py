@@ -1,7 +1,7 @@
 from argparse import ArgumentParser, ArgumentTypeError
 import sys
 from typing import NamedTuple, List, Tuple, Dict, Any
-import functions
+import MDC.functions
 
 Argument = Tuple[List[str], Dict[str, Any]]
 
@@ -113,7 +113,7 @@ def get_parser():
 
     for command in commands:
         sub = subparsers.add_parser(name=command.name, description=command.description)
-        sub.set_defaults(func=functions.__dict__.get(command.name))
+        sub.set_defaults(func=MDC.functions.__dict__.get(command.name))
         for args, kwargs in command.arguments:
             sub.add_argument(*args, **kwargs)
     return parser
@@ -124,8 +124,4 @@ def main():
     args = parser.parse_args()
     if "func" not in args:
         parser.print_help()
-
     args.func(args)
-
-
-main()

@@ -1,5 +1,5 @@
 import cv2
-from utilities.kmeans import Kmeans
+from MDC.utilities.kmeans import Kmeans
 import numpy as np
 import matplotlib.pyplot as plt
 import os
