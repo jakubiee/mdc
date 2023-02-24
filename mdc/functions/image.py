@@ -35,16 +35,27 @@ def _get_centroids(args):
 
 def _get_palette(centroids, img_title, args):
     start = 0
-    width = int(args.c * 50)
+    width = int(args.c * 150)
     height = int(width / args.c)
-    pallete = np.zeros((height, width, 3), np.uint8)
-    font = cv2.FONT_HERSHEY_PLAIN
-    font_scale = 0.5
+    text_box_height = 35
+    if args.hex:
+        pallete = np.zeros((height + text_box_height, width, 3), np.uint8)
+    else:
+        pallete = np.zeros((height, width, 3), np.uint8)
+    font = cv2.FONT_HERSHEY_DUPLEX
+    font_scale = 0.9
     for centroid in centroids:
         r, g, b = int(centroid[0]), int(centroid[1]), int(centroid[2])
         end = start + height
         cv2.rectangle(pallete, (start, 0), (int(end), height), (r, g, b), -1)
         if args.hex:
+            cv2.rectangle(
+                pallete,
+                (start, height),
+                (int(end), height + text_box_height),
+                (255, 255, 255),
+                -1,
+            )
             h, s, v = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
             rgb_color = colorsys.hsv_to_rgb(h, s, v)
             hex_color = "#{:02x}{:02x}{:02x}".format(
@@ -55,10 +66,8 @@ def _get_palette(centroids, img_title, args):
             text = hex_color.upper()
             text_size = cv2.getTextSize(text, font, font_scale, 1)[0]
             text_x = start + int((height - text_size[0]) / 2)
-            text_y = int(height * 0.9)
-            cv2.putText(
-                pallete, text, (text_x, text_y), font, font_scale, (255, 255, 255), 1
-            )
+            text_y = int(height + 25)
+            cv2.putText(pallete, text, (text_x, text_y), font, font_scale, (0, 0, 0), 1)
         start = end
     plt.figure()
     plt.axis("off")
